@@ -32,30 +32,11 @@ public class MainActivity extends AppCompatActivity {
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-                useNetwork();
+                createAndUseNetwork();
             }
         });
 
-    }
-
-    private void useNetwork() {
-        try {
-            InputStream inputStream = getResources().openRawResource(R.raw.my_network);
-            MultiLayerNetwork myNetwork =
-                    ModelSerializer.restoreMultiLayerNetwork(inputStream);
-
-            // Create input
-            INDArray actualInput = Nd4j.zeros(1,2);
-            actualInput.putScalar(new int[]{0,0}, 1);
-            actualInput.putScalar(new int[]{0,1}, 0);
-
-            // Generate output
-            INDArray actualOutput = myNetwork.output(actualInput);
-            Log.d("myNetwork Output", actualOutput.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    }    
 
     private void createAndUseNetwork() {
         DenseLayer inputLayer = new DenseLayer.Builder()
