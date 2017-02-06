@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
                 createAndUseNetwork();
             }
         });
-
     }    
 
     private void createAndUseNetwork() {
